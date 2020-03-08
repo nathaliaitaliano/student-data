@@ -35,6 +35,7 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnShowAllStudents = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pickerDateOfBirth
@@ -42,7 +43,7 @@
             this.pickerDateOfBirth.Location = new System.Drawing.Point(156, 203);
             this.pickerDateOfBirth.Name = "pickerDateOfBirth";
             this.pickerDateOfBirth.Size = new System.Drawing.Size(203, 26);
-            this.pickerDateOfBirth.TabIndex = 14;
+            this.pickerDateOfBirth.TabIndex = 3;
             this.pickerDateOfBirth.Value = new System.DateTime(2020, 3, 2, 0, 0, 0, 0);
             // 
             // labelDateOfBirth
@@ -59,7 +60,7 @@
             this.textBoxSurname.Location = new System.Drawing.Point(131, 156);
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(228, 26);
-            this.textBoxSurname.TabIndex = 13;
+            this.textBoxSurname.TabIndex = 2;
             // 
             // labelSurname
             // 
@@ -75,7 +76,7 @@
             this.textBoxName.Location = new System.Drawing.Point(108, 109);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(251, 26);
-            this.textBoxName.TabIndex = 12;
+            this.textBoxName.TabIndex = 1;
             // 
             // labelName
             // 
@@ -91,16 +92,27 @@
             this.btnSave.Location = new System.Drawing.Point(235, 271);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(124, 59);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnShowAllStudents
+            // 
+            this.btnShowAllStudents.Location = new System.Drawing.Point(568, 44);
+            this.btnShowAllStudents.Name = "btnShowAllStudents";
+            this.btnShowAllStudents.Size = new System.Drawing.Size(158, 59);
+            this.btnShowAllStudents.TabIndex = 5;
+            this.btnShowAllStudents.Text = "STUDENTS LIST";
+            this.btnShowAllStudents.UseVisualStyleBackColor = true;
+            this.btnShowAllStudents.Click += new System.EventHandler(this.btnShowAllStudents_Click);
             // 
             // formStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnShowAllStudents);
             this.Controls.Add(this.pickerDateOfBirth);
             this.Controls.Add(this.labelDateOfBirth);
             this.Controls.Add(this.textBoxSurname);
@@ -124,6 +136,7 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnShowAllStudents;
     }
 }
 
