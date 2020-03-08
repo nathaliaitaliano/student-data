@@ -4,7 +4,7 @@ namespace Common
 {
     public class Student
     {
-        private readonly Int32 StudentId;
+        public Int32 StudentId { get; set; }
         public String Name { get; set; }
         public String Surname { get; set; }
         public DateTime DateOfBirth { get; set; }

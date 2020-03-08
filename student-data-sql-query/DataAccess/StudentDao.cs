@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace DataAccess
 {
@@ -17,21 +16,16 @@ namespace DataAccess
 
         public List<Student> GetAllStudents()
         {
-            string sql = $"Select StudentId, Name, Surname, Birthday from dbo.Students";
-            List<object[]> studentsData = ReadData(sql);
-            List<Student> studentsLista = new List<Student>();
+            string sql = "Select StudentId, Name, Surname, Birthday from dbo.Students";
+            List<Student> studentsList = CreateStudentList(sql);
+            return studentsList;
+        }
 
-            foreach (object[] studentData in studentsData)
-            {
-                Int32 studentId = (Int32)studentData[0];
-                String name = (String)studentData[1];
-                String surname = (String)studentData[2];
-                DateTime dateOfBirth = (DateTime)studentData[3];
-
-                Student student = new Student(studentId, name, surname, dateOfBirth);
-                studentsLista.Add(student);
-            }
-            return studentsLista;
+        public Student GetStudentById(Int32 studentId)
+        {
+            string sql = $"Select * from dbo.Students where StudentId='{studentId}'";
+            List<Student> studentById = CreateStudentList(sql);
+            return studentById[0];
         }
 
         private  SqlConnection DatabaseConnection()
@@ -77,6 +71,24 @@ namespace DataAccess
             query.Dispose();
             connection.Close();
             return studentsList;
+        }
+
+        public List<Student> CreateStudentList(String sql)
+        {
+            List<object[]> studentsData = ReadData(sql);
+            List<Student> studentsLista = new List<Student>();
+
+            foreach (object[] studentData in studentsData)
+            {
+                Int32 studentId = (Int32)studentData[0];
+                String name = (String)studentData[1];
+                String surname = (String)studentData[2];
+                DateTime dateOfBirth = (DateTime)studentData[3];
+
+                Student student = new Student(studentId, name, surname, dateOfBirth);
+                studentsLista.Add(student);
+            }
+            return studentsLista;
         }
     }
 }

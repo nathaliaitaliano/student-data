@@ -23,6 +23,7 @@ namespace WindowsFormsApp
 
             StudentDao studentDao = new StudentDao();
             studentDao.Add(student);
+            MessageBox.Show("Student added succesfully");
         }
 
         private void btnShowAllStudents_Click(object sender, EventArgs e)
@@ -38,6 +39,16 @@ namespace WindowsFormsApp
             }
 
             MessageBox.Show(studentsList);
+        }
+
+        private void btnSearchStudentId_Click(object sender, EventArgs e)
+        {
+            StudentDao studentDao = new StudentDao();
+            String studentId = textBoxStudentId.Text;
+            
+            Student student = studentDao.GetStudentById(Int32.Parse(studentId));
+            String studentById = student.ToString();
+            MessageBox.Show(studentById);
         }
     }
 }
