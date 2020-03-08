@@ -1,20 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
+using DataAccess;
 
 namespace WindowsFormsApp
 {
-    public partial class Form1 : Form
+    public partial class formStudent : Form
     {
-        public Form1()
+        public formStudent()
         {
             InitializeComponent();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            String name = textBoxName.Text;
+            String surname = textBoxSurname.Text;
+            DateTime dateOfBirth = pickerDateOfBirth.Value;
+
+            Student student = new Student(name, surname, dateOfBirth);
+
+            StudentDao studentDao = new StudentDao();
+            studentDao.Add(student);
         }
     }
 }

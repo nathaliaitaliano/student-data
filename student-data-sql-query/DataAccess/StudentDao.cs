@@ -1,27 +1,39 @@
 ﻿using Common;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class StudentDao : IStudentDao
+    public class StudentDao
     {
-        public void ConnectionDatabase()
+        public void Add(Student student)
         {
-            string connectionConfiguration;
-            SqlConnection connection;
-
-            connectionConfiguration = @"Data Source=Localhost;Initial Catalog=Vueling;User ID=sa;Password=yourStrong(!)Password";
-            connection = new SqlConnection(connectionConfiguration);
-
-            connection.Open();
-            connection.Close();
+            string sql = $"Insert into dbo.Students (Name, Surname, Birthday) " +
+                $"values('{student.Name}', '{student.Surname}', '{student.DateOfBirth}')";
+            ExecuteQuery(sql);
         }
 
-        public void Add(Student student);
+        private  SqlConnection DatabaseConnection()
+        {
+            string connectionConfiguration;
+
+            connectionConfiguration = @"Data Source=Localhost;Initial Catalog=Vueling;User ID=sa;Password=yourStrong(!)Password";
+            return new SqlConnection(connectionConfiguration);
+        }
+
+        private void ExecuteQuery(String sql)
+        {
+            SqlConnection connection = DatabaseConnection();
+            connection.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand query = new SqlCommand(sql, connection);
+
+            adapter.InsertCommand = query;
+            adapter.InsertCommand.ExecuteNonQuery();
+
+            query.Dispose();
+            connection.Close();
+        }
     }
 }
