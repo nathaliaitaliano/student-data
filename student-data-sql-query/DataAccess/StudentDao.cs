@@ -28,6 +28,12 @@ namespace DataAccess
             return studentById[0];
         }
 
+        public void DeleteStudentById(Int32 studentId)
+        {
+            string sql = $"Delete dbo.Students where StudentId='{studentId}'";
+            ExecuteQuery(sql);
+        }
+
         private  SqlConnection DatabaseConnection()
         {
             string connectionConfiguration;
@@ -73,7 +79,7 @@ namespace DataAccess
             return studentsList;
         }
 
-        public List<Student> CreateStudentList(String sql)
+        private List<Student> CreateStudentList(String sql)
         {
             List<object[]> studentsData = ReadData(sql);
             List<Student> studentsLista = new List<Student>();

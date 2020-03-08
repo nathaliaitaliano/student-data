@@ -27,7 +27,7 @@ namespace Common
 
         public override String ToString()
         {
-            return "ID: " + StudentId + " - " + "Name: " + Name +" " + Surname + " - " 
+            return "ID: " + StudentId + " - " + "Name: " + Name + " " + Surname + " - " 
                 + "Date of Birth: " + DateOfBirth.ToString("dd/MM/yyyy");
         }
     }

@@ -45,10 +45,20 @@ namespace WindowsFormsApp
         {
             StudentDao studentDao = new StudentDao();
             String studentId = textBoxStudentId.Text;
-            
+
             Student student = studentDao.GetStudentById(Int32.Parse(studentId));
             String studentById = student.ToString();
             MessageBox.Show(studentById);
+        }
+        private void btnDeleteById_Click(object sender, EventArgs e)
+        {
+            String studentId = textBoxStudentId.Text;
+            StudentDao studentDao = new StudentDao();
+
+            studentDao.DeleteStudentById(Int32.Parse(studentId));
+            MessageBox.Show("Student deleted succesfully!");
+
+
         }
     }
 }
