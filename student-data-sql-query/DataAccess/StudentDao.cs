@@ -1,7 +1,6 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using log4net;
 
 namespace DataAccess
@@ -16,7 +15,7 @@ namespace DataAccess
 
             string sql = $"Insert into dbo.Students (Name, Surname, Birthday) " +
                 $"values('{student.Name}', '{student.Surname}', '{student.DateOfBirth}')";
-            ExecuteQuery(sql);
+            Database.ExecuteQuery(sql);
         }
 
         public List<Student> GetAllStudents()
@@ -37,63 +36,18 @@ namespace DataAccess
         {
             string sql = $"Update dbo.Students set Name='{student.Name}', Surname='{student.Surname}', " +
                 $"Birthday='{student.DateOfBirth}' where StudentId='{student.StudentId}'";
-            ExecuteQuery(sql);
+            Database.ExecuteQuery(sql);
         }
 
         public void DeleteStudentById(Int32 studentId)
         {
             string sql = $"Delete dbo.Students where StudentId='{studentId}'";
-            ExecuteQuery(sql);
-        }
-
-        private  SqlConnection DatabaseConnection()
-        {
-            string connectionConfiguration;
-
-            connectionConfiguration = @"Data Source=Localhost;Initial Catalog=Vueling;User ID=sa;Password=yourStrong(!)Password";
-            return new SqlConnection(connectionConfiguration);
-        }
-
-        private void ExecuteQuery(String sql)
-        {
-            SqlConnection connection = DatabaseConnection();
-            connection.Open();
-
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand query = new SqlCommand(sql, connection);
-
-            adapter.InsertCommand = query;
-            adapter.InsertCommand.ExecuteNonQuery();
-
-            query.Dispose();
-            connection.Close();
-        }
-
-        private List<object[]> ReadData(String sql)
-        {
-            SqlConnection connection = DatabaseConnection();
-            connection.Open();
-
-            SqlCommand query = new SqlCommand(sql, connection);
-            SqlDataReader dataReader = query.ExecuteReader();
-            
-            List<object[]> studentsList = new List<object[]>();
-            
-            while(dataReader.Read())
-            {
-                object[] student = new object[4];
-                dataReader.GetValues(student);
-                studentsList.Add(student);
-            }
-
-            query.Dispose();
-            connection.Close();
-            return studentsList;
+            Database.ExecuteQuery(sql);
         }
 
         private List<Student> CreateStudentList(String sql)
         {
-            List<object[]> studentsData = ReadData(sql);
+            List<object[]> studentsData = Database.ReadData(sql);
             List<Student> studentsLista = new List<Student>();
 
             foreach (object[] studentData in studentsData)
