@@ -2,13 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using log4net;
 
 namespace DataAccess
 {
     public class StudentDao
     {
+        private static readonly ILog log= LogManager.GetLogger(typeof(StudentDao));
+
         public void Add(Student student)
         {
+            log.Info(student.Name);
+
             string sql = $"Insert into dbo.Students (Name, Surname, Birthday) " +
                 $"values('{student.Name}', '{student.Surname}', '{student.DateOfBirth}')";
             ExecuteQuery(sql);

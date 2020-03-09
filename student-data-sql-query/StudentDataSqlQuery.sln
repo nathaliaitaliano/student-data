@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessIntegrationTests", "DataAccessTests\DataAccessIntegrationTests.csproj", "{1B06B4F3-099E-48FA-906D-5EA47AF2B4C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Acces Integration Tests", "Data Acces Integration Tests", "{5D0BAC77-45B0-41F2-9905-96AAB72DFFAE}"
+	ProjectSection(SolutionItems) = preProject
+		WindowsFormsApp\App.config = WindowsFormsApp\App.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
