@@ -11,8 +11,6 @@ namespace DataAccess
 
         public void Add(Student student)
         {
-            log.Info(student.Name);
-
             string sql = $"Insert into dbo.Students (Name, Surname, Birthday) " +
                 $"values('{student.Name}', '{student.Surname}', '{student.DateOfBirth}')";
             Database.ExecuteQuery(sql);
@@ -48,7 +46,7 @@ namespace DataAccess
         private List<Student> CreateStudentList(String sql)
         {
             List<object[]> studentsData = Database.ReadData(sql);
-            List<Student> studentsLista = new List<Student>();
+            List<Student> studentsList = new List<Student>();
 
             foreach (object[] studentData in studentsData)
             {
@@ -58,9 +56,9 @@ namespace DataAccess
                 DateTime dateOfBirth = (DateTime)studentData[3];
 
                 Student student = new Student(studentId, name, surname, dateOfBirth);
-                studentsLista.Add(student);
+                studentsList.Add(student);
             }
-            return studentsLista;
+            return studentsList;
         }
     }
 }
