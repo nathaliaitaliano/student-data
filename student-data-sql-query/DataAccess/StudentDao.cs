@@ -33,6 +33,13 @@ namespace DataAccess
             return studentById[0];
         }
 
+        public void UpdateStudent(Student student)
+        {
+            string sql = $"Update dbo.Students set Name='{student.Name}', Surname='{student.Surname}', " +
+                $"Birthday='{student.DateOfBirth}' where StudentId='{student.StudentId}'";
+            ExecuteQuery(sql);
+        }
+
         public void DeleteStudentById(Int32 studentId)
         {
             string sql = $"Delete dbo.Students where StudentId='{studentId}'";

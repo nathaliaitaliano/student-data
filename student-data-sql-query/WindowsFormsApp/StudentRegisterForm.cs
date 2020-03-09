@@ -6,9 +6,9 @@ using DataAccess;
 
 namespace WindowsFormsApp
 {
-    public partial class formStudent : Form
+    public partial class StudentRegisterForm : Form
     {
-        public formStudent()
+        public StudentRegisterForm()
         {
             InitializeComponent();
         }
@@ -59,6 +59,16 @@ namespace WindowsFormsApp
             MessageBox.Show("Student deleted succesfully!");
 
 
+        }
+
+        private void btnUpdateStudent_Click(object sender, EventArgs e)
+        {
+            StudentDao studentDao = new StudentDao();
+            String studentId = textBoxStudentId.Text;
+            Student student = studentDao.GetStudentById(Int32.Parse(studentId));
+
+            var updateStudent = new UpdateStudentForm(student);
+            updateStudent.Show();
         }
     }
 }

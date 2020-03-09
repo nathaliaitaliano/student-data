@@ -10,7 +10,7 @@ namespace WindowsFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formStudent());
+            Application.Run(new StudentRegisterForm());
             log4net.Config.XmlConfigurator.Configure();
         }
     }

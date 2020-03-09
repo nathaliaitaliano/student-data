@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp
 {
-    partial class formStudent
+    partial class StudentRegisterForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -40,6 +40,7 @@
             this.textBoxStudentId = new System.Windows.Forms.TextBox();
             this.labelSearchId = new System.Windows.Forms.Label();
             this.btnSearchStudentId = new System.Windows.Forms.Button();
+            this.btnUpdateStudent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pickerDateOfBirth
@@ -103,7 +104,7 @@
             // 
             // btnShowAllStudents
             // 
-            this.btnShowAllStudents.Location = new System.Drawing.Point(518, 271);
+            this.btnShowAllStudents.Location = new System.Drawing.Point(55, 271);
             this.btnShowAllStudents.Name = "btnShowAllStudents";
             this.btnShowAllStudents.Size = new System.Drawing.Size(158, 59);
             this.btnShowAllStudents.TabIndex = 8;
@@ -113,7 +114,7 @@
             // 
             // btnDeleteById
             // 
-            this.btnDeleteById.Location = new System.Drawing.Point(518, 191);
+            this.btnDeleteById.Location = new System.Drawing.Point(524, 206);
             this.btnDeleteById.Name = "btnDeleteById";
             this.btnDeleteById.Size = new System.Drawing.Size(90, 41);
             this.btnDeleteById.TabIndex = 6;
@@ -123,7 +124,7 @@
             // 
             // textBoxStudentId
             // 
-            this.textBoxStudentId.Location = new System.Drawing.Point(518, 136);
+            this.textBoxStudentId.Location = new System.Drawing.Point(524, 151);
             this.textBoxStudentId.Multiline = true;
             this.textBoxStudentId.Name = "textBoxStudentId";
             this.textBoxStudentId.Size = new System.Drawing.Size(155, 40);
@@ -132,7 +133,7 @@
             // labelSearchId
             // 
             this.labelSearchId.AutoSize = true;
-            this.labelSearchId.Location = new System.Drawing.Point(523, 106);
+            this.labelSearchId.Location = new System.Drawing.Point(529, 121);
             this.labelSearchId.Name = "labelSearchId";
             this.labelSearchId.Size = new System.Drawing.Size(146, 20);
             this.labelSearchId.TabIndex = 23;
@@ -140,7 +141,7 @@
             // 
             // btnSearchStudentId
             // 
-            this.btnSearchStudentId.Location = new System.Drawing.Point(614, 191);
+            this.btnSearchStudentId.Location = new System.Drawing.Point(620, 206);
             this.btnSearchStudentId.Name = "btnSearchStudentId";
             this.btnSearchStudentId.Size = new System.Drawing.Size(59, 41);
             this.btnSearchStudentId.TabIndex = 24;
@@ -148,11 +149,22 @@
             this.btnSearchStudentId.UseVisualStyleBackColor = true;
             this.btnSearchStudentId.Click += new System.EventHandler(this.btnSearchStudentId_Click);
             // 
+            // btnUpdateStudent
+            // 
+            this.btnUpdateStudent.Location = new System.Drawing.Point(524, 263);
+            this.btnUpdateStudent.Name = "btnUpdateStudent";
+            this.btnUpdateStudent.Size = new System.Drawing.Size(164, 59);
+            this.btnUpdateStudent.TabIndex = 25;
+            this.btnUpdateStudent.Text = "UPDATE STUDENT";
+            this.btnUpdateStudent.UseVisualStyleBackColor = true;
+            this.btnUpdateStudent.Click += new System.EventHandler(this.btnUpdateStudent_Click);
+            // 
             // formStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnUpdateStudent);
             this.Controls.Add(this.btnSearchStudentId);
             this.Controls.Add(this.btnDeleteById);
             this.Controls.Add(this.textBoxStudentId);
@@ -186,6 +198,7 @@
         private System.Windows.Forms.TextBox textBoxStudentId;
         private System.Windows.Forms.Label labelSearchId;
         private System.Windows.Forms.Button btnSearchStudentId;
+        private System.Windows.Forms.Button btnUpdateStudent;
     }
 }
 
