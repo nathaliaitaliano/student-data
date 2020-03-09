@@ -5,7 +5,7 @@ using log4net;
 
 namespace DataAccess
 {
-    public class StudentDao
+    public class StudentDao : IStudentDao
     {
         private static readonly ILog log= LogManager.GetLogger(typeof(StudentDao));
 
