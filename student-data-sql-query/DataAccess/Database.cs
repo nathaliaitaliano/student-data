@@ -8,6 +8,7 @@ namespace DataAccess
     static class Database
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(StudentDao));
+
         private static SqlConnection Connect()
         {
             string connectionConfiguration;
@@ -32,17 +33,17 @@ namespace DataAccess
             }
             catch(InvalidOperationException exception)
             {
-                log.Error("Invalid operation exception!", exception);
+                log.Error($"Invalid operation exception! Query: {sql}", exception);
                 throw;
             }
             catch(SqlException exception)
             {
-                log.Error("Sql exception!", exception);
+                log.Error($"Sql exception! Query: {sql}", exception);
                 throw;
             }
             catch(InvalidCastException exception)
             {
-                log.Error("Invalid cast exception", exception);
+                log.Error($"Invalid cast exception Query: {sql}", exception);
                 throw;
             }
         }

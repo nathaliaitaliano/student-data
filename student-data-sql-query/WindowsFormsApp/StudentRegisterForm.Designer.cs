@@ -159,7 +159,7 @@
             this.btnUpdateStudent.UseVisualStyleBackColor = true;
             this.btnUpdateStudent.Click += new System.EventHandler(this.btnUpdateStudent_Click);
             // 
-            // formStudent
+            // StudentRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -177,7 +177,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.btnSave);
-            this.Name = "formStudent";
+            this.Name = "StudentRegisterForm";
             this.Text = "STUDENT REGISTER";
             this.ResumeLayout(false);
             this.PerformLayout();

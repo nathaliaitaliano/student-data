@@ -11,6 +11,17 @@ namespace DataAccess
 
         public void Add(Student student)
         {
+            log.Info($"ADD {student}");
+
+            if ((String.IsNullOrEmpty(student.Name)) || (String.IsNullOrEmpty(student.Surname)))
+            {
+                throw new ArgumentException("Student NAME or SURNAME can't be null!");
+            }
+            if ((student.DateOfBirth > DateTime.Today))
+            {
+                throw new ArgumentException("Invalid Date of Birth!");
+            }
+
             string sql = $"Insert into dbo.Students (Name, Surname, Birthday) " +
                 $"values('{student.Name}', '{student.Surname}', '{student.DateOfBirth}')";
             Database.ExecuteQuery(sql);
@@ -18,6 +29,7 @@ namespace DataAccess
 
         public List<Student> GetAllStudents()
         {
+            log.Info("SHOW all students list");
             string sql = "Select StudentId, Name, Surname, Birthday from dbo.Students";
             List<Student> studentsList = CreateStudentList(sql);
             return studentsList;
@@ -25,6 +37,13 @@ namespace DataAccess
 
         public Student GetStudentById(Int32 studentId)
         {
+            log.Info($"SEARCH a student by ID: {studentId}");
+
+            if (studentId < 0)
+            {
+                return null;
+            }
+
             string sql = $"Select * from dbo.Students where StudentId='{studentId}'";
             List<Student> studentById = CreateStudentList(sql);
             return studentById[0];
@@ -32,6 +51,7 @@ namespace DataAccess
 
         public void UpdateStudent(Student student)
         {
+            log.Info($"UPDATE {student}");
             string sql = $"Update dbo.Students set Name='{student.Name}', Surname='{student.Surname}', " +
                 $"Birthday='{student.DateOfBirth}' where StudentId='{student.StudentId}'";
             Database.ExecuteQuery(sql);
@@ -39,6 +59,7 @@ namespace DataAccess
 
         public void DeleteStudentById(Int32 studentId)
         {
+            log.Info($"DELETE a student by ID: {studentId}");
             string sql = $"Delete dbo.Students where StudentId='{studentId}'";
             Database.ExecuteQuery(sql);
         }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
 using DataAccess;
+using log4net;
 
 namespace WindowsFormsApp
 {
     public partial class StudentRegisterForm : Form
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(StudentDao));
         public StudentRegisterForm()
         {
             InitializeComponent();
@@ -15,15 +17,23 @@ namespace WindowsFormsApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            String name = textBoxName.Text;
-            String surname = textBoxSurname.Text;
-            DateTime dateOfBirth = pickerDateOfBirth.Value;
+            try
+            {
+                String name = textBoxName.Text;
+                String surname = textBoxSurname.Text;
+                DateTime dateOfBirth = pickerDateOfBirth.Value;
 
-            Student student = new Student(name, surname, dateOfBirth);
+                Student student = new Student(name, surname, dateOfBirth);
 
-            StudentDao studentDao = new StudentDao();
-            studentDao.Add(student);
-            MessageBox.Show("Student added succesfully");
+                StudentDao studentDao = new StudentDao();
+                studentDao.Add(student);
+                MessageBox.Show("Student added succesfully");
+            }
+            catch(ArgumentException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
         }
 
         private void btnShowAllStudents_Click(object sender, EventArgs e)
@@ -43,32 +53,98 @@ namespace WindowsFormsApp
 
         private void btnSearchStudentId_Click(object sender, EventArgs e)
         {
-            StudentDao studentDao = new StudentDao();
-            String studentId = textBoxStudentId.Text;
+            try
+            {
+                StudentDao studentDao = new StudentDao();
+                String studentId = textBoxStudentId.Text;
 
-            Student student = studentDao.GetStudentById(Int32.Parse(studentId));
-            String studentById = student.ToString();
-            MessageBox.Show(studentById);
+                if (String.IsNullOrEmpty(studentId))
+                {
+                    MessageBox.Show("ID can't be null!");
+                    return;
+                }
+
+                Student student = studentDao.GetStudentById(Int32.Parse(studentId));
+
+                if (student == null)
+                {
+                    MessageBox.Show("Invalid student ID!");
+                    return;
+                }
+
+                String studentById = student.ToString();
+                MessageBox.Show(studentById);
+            }
+            catch(ArgumentNullException exception) 
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
+            catch (FormatException exception)
+            {
+                log.Error("Format exception!", exception);
+                throw;
+            }
+            catch (OverflowException exception)
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
         }
+
         private void btnDeleteById_Click(object sender, EventArgs e)
         {
-            String studentId = textBoxStudentId.Text;
-            StudentDao studentDao = new StudentDao();
+            try
+            {
+                String studentId = textBoxStudentId.Text;
+                StudentDao studentDao = new StudentDao();
 
-            studentDao.DeleteStudentById(Int32.Parse(studentId));
-            MessageBox.Show("Student deleted succesfully!");
-
-
+                studentDao.DeleteStudentById(Int32.Parse(studentId));
+                MessageBox.Show("Student deleted succesfully!");
+            }
+            catch (ArgumentNullException exception)
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
+            catch (FormatException exception)
+            {
+                log.Error("Format exception!", exception);
+                throw;
+            }
+            catch (OverflowException exception)
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
         }
 
         private void btnUpdateStudent_Click(object sender, EventArgs e)
         {
+            try 
+            {
             StudentDao studentDao = new StudentDao();
             String studentId = textBoxStudentId.Text;
             Student student = studentDao.GetStudentById(Int32.Parse(studentId));
 
             var updateStudent = new UpdateStudentForm(student);
             updateStudent.Show();
+            }
+            catch (ArgumentNullException exception)
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
+            catch (FormatException exception)
+            {
+                log.Error("Format exception!", exception);
+                throw;
+            }
+            catch (OverflowException exception)
+            {
+                log.Error("Argument null exception!", exception);
+                throw;
+            }
         }
     }
 }
